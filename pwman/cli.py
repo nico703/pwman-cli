@@ -1,4 +1,4 @@
-import argparse, getpass, secrets, string
+import argparse, getpass, secrets, string, subprocess
 from .storage import get_store, write_store
 
 
@@ -27,7 +27,17 @@ def cmd_get(args):
     if not item:
         print("Kein Eintrag gefunden.")
         return
-    print(f"User: {item['user']}\nPasswort: {item['password']}")
+    if getattr(args, "copy", False):
+        try:
+            # macOS: pbcopy
+            p = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE)
+            p.communicate(input=item["password"].encode("utf-8"))
+            print("✓ Passwort in die Zwischenablage kopiert.")
+        except FileNotFoundError:
+            print("pbcopy nicht gefunden. Passwort wird ausgegeben:")
+            print(item["password"])
+    else:
+        print(f"User: {item['user']}\\nPasswort: {item['password']}")
 
 
 def cmd_list(_):
