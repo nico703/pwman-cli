@@ -1,0 +1,20 @@
+# venv
+.venv/
+
+# Bytecode
+__pycache__/
+*.pyc
+
+# build artefacts
+build/
+dist/
+*.egg-info/
+
+# editor
+.vscode/
+.idea/
+
+# lokale DB des Tools
+.pwman.db
+pwman.db
+~/.pwman.db
