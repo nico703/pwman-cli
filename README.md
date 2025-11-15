@@ -17,6 +17,13 @@ pip install -r requirements.txt
 ```
 
 ## Nutzung
+
+# Passwort anzeigen
+python -m pwman.cli get github
+
+# Passwort nur ins Clipboard (macOS)
+python -m pwman.cli get github --copy
+
 ```bash
 # Liste (erzeugt DB bei Bedarf)
 python -m pwman.cli list
